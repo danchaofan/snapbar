@@ -33,13 +33,21 @@ A native macOS menu bar app for screenshots, annotations, and local image saving
 
 多显示器截图每次属于一个屏幕；当前不支持跨屏合并、滚动长截图、OCR、录屏或截图历史。
 
-## 运行
+## 下载与安装
 
-要求 **macOS 13 或以上**。将构建出的「轻截.app」拖入「应用程序」并打开，菜单栏会出现取景框图标。
+**[下载 SnapBar 1.1.0 macOS 安装包（DMG）](https://github.com/danchaofan/snapbar/raw/refs/heads/main/Installers/SnapBar-1.1.0-macOS-universal.dmg)**
 
-首次截图需在「系统设置 → 隐私与安全性 → 屏幕录制」中允许轻截，并按系统提示退出后重新打开。
+要求 **macOS 13 或以上**。安装包同时包含 Intel 和 Apple Silicon 版本，安装和使用无需 Xcode 或其他开发环境。
 
-本项目默认使用本地临时签名，未做 Apple 公证。首次打开若被 macOS 拦截，确认来源后可右键 App 选择「打开」。
+1. 下载并双击打开 `SnapBar-1.1.0-macOS-universal.dmg`。
+2. 将「轻截.app」拖到安装盘里的 **Applications（应用程序）** 文件夹。如果已安装旧版，先退出轻截再替换。
+3. 推出安装盘，从「应用程序」打开「轻截」。屏幕顶部菜单栏会出现取景框图标。
+4. 首次截图时，在「系统设置 → 隐私与安全性 → 屏幕录制」中允许轻截，按系统提示退出并重新打开。
+5. 按 **Control + Shift + A** 开始截图，快捷键可在设置中修改。
+
+当前安装包采用本地临时签名，尚未做 Apple 公证。首次打开若被 macOS 拦截，确认来自本仓库后可右键 App 选择「打开」；较新的 macOS 可在「系统设置 → 隐私与安全性」中选择「仍要打开」。
+
+安装包保存在仓库的 [Installers](Installers/) 目录，[SHA-256 校验值](Installers/SnapBar-1.1.0-macOS-universal.dmg.sha256) 与安装包一同提供。
 
 ## 操作
 
@@ -86,6 +94,21 @@ SNAPBAR_ARCH=universal ./build.sh
 ```
 
 可通过 `SNAPBAR_ARCH=arm64` 或 `SNAPBAR_ARCH=x86_64` 指定单一架构。`SNAPBAR_OUTPUT_DIR` 和 `SNAPBAR_BUILD_DIR` 可修改输出与缓存位置。
+
+### 打包 DMG 安装盘
+
+```bash
+SNAPBAR_ARCH=universal ./build.sh
+./package-dmg.sh
+```
+
+默认将 `dist/轻截.app` 打包到 `Installers/`，同时生成 SHA-256 校验文件。安装盘包含 App、Applications 快捷入口和安装说明。
+
+也可以指定已有的 App 和输出目录，打包过程保留 App 现有签名：
+
+```bash
+./package-dmg.sh '/path/to/轻截.app' './Installers'
+```
 
 ## 验证与界面预览
 
