@@ -1,0 +1,28 @@
+# macOS and editor files
+.DS_Store
+._*
+*.xcuserstate
+xcuserdata/
+.idea/
+.vscode/
+
+# Generated builds, icons, and release packages
+.build/
+dist/
+build/
+AppIcon.icns
+*.app/
+*.dmg
+*.zip
+*.log
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Keep documentation previews; exclude local settings screenshots.
+Previews/*
+!Previews/菜单栏.png
+!Previews/截图标注.png
+!Previews/多行文字.png
